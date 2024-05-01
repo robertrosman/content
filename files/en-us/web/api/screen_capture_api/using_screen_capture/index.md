@@ -1,7 +1,141 @@
 ---
 title: Using the Screen Capture API
 slug: Web/API/Screen_Capture_API/Using_Screen_Capture
-page-type: guide
+page-type: guide{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "/zmarta/event/new-electricity-lead/2.0.0/schema.json",
+  "title": "New electricity lead",
+  "description": "An event for when a electricity lead is submitted.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "market",
+    "brand",
+    "applicantType",
+    "zipCode",
+    "city",
+    "contractType",
+    "consumption",
+    "consumptions",
+    "totalFacilities",
+    "leadId",
+    "leadRequestId",
+    "benefitsAgreement",
+    "marketingAllowed"
+  ],
+  "properties": {
+    "market": {
+      "description": "Can be se or no.",
+      "type": "string",
+      "enum": [
+        "se",
+        "no"
+      ]
+    },
+    "brand": {
+      "description": "Can be ZMARTA or ELSKLING.",
+      "type": "string",
+      "enum": [
+        "ZMARTA",
+        "ELSKLING"
+      ]
+    },
+    "applicantType": {
+      "description": "Can be CONSUMER or BUSINESS.",
+      "type": "string",
+      "enum": [
+        "CONSUMER",
+        "BUSINESS"
+      ]
+    },
+    "zipCode": {
+      "description": "The zip code of the property.",
+      "type": "string"
+    },
+    "city": {
+      "description": "The city of the property.",
+      "type": "string"
+    },
+    "contractType": {
+      "description": "The chosen contract type.",
+      "type": "string",
+      "enum": [
+        "FIXED",
+        "MIXED",
+        "MOVING_HOURLY",
+        "MOVING_MONTHLY"
+      ]
+    },
+    "houseType": {
+      "description": "The type of the property (if applicantType = CONSUMER).",
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "HOUSE",
+        "APARTMENT"
+      ]
+    },
+    "consumption": {
+      "description": "Estimated yearly consumption in kWh/year. If multiple facilities, then this is the total comsumption of all facilities.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "consumptions": {
+      "description": "Estimated yearly comsumption in kWh/year for each individual facility.",
+      "type": "array",
+      "items": { 
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "email": {
+      "description": "Email of the applicant or the contact person if type = BUSINESS.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "email"
+    },
+    "phone": {
+      "description": "Phone number of the applicant or the contact person if type = BUSINESS.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "organizationNumber": {
+      "description": "Only required if applicantType = BUSINESS.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "totalFacilities": {
+      "description": "Number of facilites that the customer owns. Defaults to 1.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "leadId": {
+      "description": "Service-customer lead id.",
+      "type": "string"
+    },
+    "leadRequestId": {
+      "description": "Unique search id for the lead.",
+      "type": "string"
+    },
+    "benefitsAgreement": {
+      "description": "If the applicant has accepted the benefits agreement.",
+      "type": "boolean"
+    },
+    "marketingAllowed": {
+      "description": "If the applicant has accepted the marketing allowed agreement.",
+      "type": "boolean"
+    }
+  }
+}
+
 browser-compat: api.MediaDevices.getDisplayMedia
 ---
 
@@ -217,7 +351,7 @@ console.error = (msg) =>
   (logElem.textContent = `${logElem.textContent}\nError: ${msg}`);
 ```
 
-This allows us to use {{domxref("console/log_static", "console/log()")}} and {{domxref("console.error_static", "console.error()")}} to log information to the log box in the document.
+This allows us to use {{domxref("console/log_static", "console.log()")}} and {{domxref("console.error_static", "console.error()")}} to log information to the log box in the document.
 
 ##### Starting display capture
 
